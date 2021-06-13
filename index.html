@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .nav {
+            background: black;
+            width: 100%;
+        }
+
+        .header {
+            width: 1200px;
+            height: 60px;
+            line-height: 60px;
+            text-align: center;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo {
+            margin-right: 35px;
+        }
+
+        a {
+            text-decoration: none;
+            color: white;
+        }
+
+        .colors {
+            color: #ffcd2d;
+        }
+
+        .first {
+            width: 60px;
+            margin-right: 20px;
+        }
+
+        .download {
+            width: 120px;
+            margin-right: 50px;
+        }
+
+        .second {
+            font-size: 14px;
+            margin-right: 20px;
+        }
+
+        .second>a {
+            color: #ddd;
+        }
+
+        .img {
+            width: 16px;
+            height: 16px;
+            background: url(./images/control1.png);
+            background-position-x: 100px;
+            background-position-y: 209px;
+        }
+
+        .third {
+            margin-right: 20px;
+            font-size: 14px;
+        }
+
+        .search {
+            background: url(./images/search.png);
+            width: 170px;
+            height: 25px;
+            line-height: 25px;
+            text-align: left;
+            padding-left: 10px;
+            margin-left: 8px;
+            font-size: 12px;
+            color: rgb(89, 92, 92);
+        }
+
+        .page {
+            width: 1250px;
+            margin: 40px auto;
+            display: flex;
+            height: 600px;
+        }
+
+        .lyric {
+            width: 750px;
+        }
+
+        .player {
+            width: 500px;
+        }
+
+        .title {
+            text-align: center;
+            font-size: 25px;
+            margin-bottom: 20px;
+        }
+
+        .message {
+            text-align: center;
+            font-size: 12px;
+        }
+
+        .singer {
+            color: gray;
+        }
+
+        .share {
+            color: black;
+        }
+
+        .comment {
+            display: inline-block;
+        }
+
+        .words {
+            border-top: 2px solid rgb(218, 216, 216);
+            margin-top: 20px;
+            padding-top: 20px;
+            height: 350px;
+            overflow-y: auto;
+        }
+
+        .words>p {
+            text-align: center;
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+
+        .words>.colors {
+            font-size: 18px;
+        }
+
+        @keyframes animation1 {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .coverframe {
+            border: 1px solid #ddd;
+            width: 240px;
+            height: 240px;
+            /* animation: animation1 5s linear infinite; */
+            border-radius: 50%;
+            margin: 0 auto;
+        }
+
+        .cover {
+            width: 230px;
+            height: 230px;
+            border-radius: 50%;
+            margin: 5px auto;
+            background: url(./images/cover.jpg);
+            background-size: cover;
+        }
+
+        .big_circle {
+            position: relative;
+            width: 80px;
+            height: 80px;
+            top: 32%;
+            left: 32%;
+            background-color: rgb(218, 216, 216);
+            border: 1px solid #ccc;
+            opacity: 0.5;
+            border-radius: 50%;
+        }
+
+        .small_circle {
+            z-index: 102;
+            position: relative;
+            width: 30px;
+            height: 30px;
+            top: 29%;
+            left: 29%;
+            background-color: white;
+            opacity: 0.8;
+            border-radius: 50%;
+            border: 1px solid #ccc;
+        }
+
+        #playBtn {
+            float: left;
+            margin-left: 30px;
+            width: 41px;
+            height: 41px;
+            background: url(./images/control2.jpg);
+            background-position-x: 115px;
+            background-position-y: 0px;
+        }
+
+        .bufBar {
+            float: left;
+            width: 300px;
+            height: 5px;
+            border-radius: 15px;
+            margin-top: 20px;
+            margin-left: 10px;
+            background: rgb(179, 174, 179);
+        }
+
+        .prograssBar {
+            width: 0px;
+            height: 5px;
+            border-radius: 15px;
+            background: #ffcd2d;
+        }
+
+        .processBtn {
+            position: absolute;
+            display: inline-block;
+            border-radius: 50%;
+            margin-top: -8px;
+            margin-left: -2px;
+            width: 10px;
+            height: 10px;
+            background: url(./images/control2.jpg);
+            background-position-x: -95px;
+            background-position-y: 0px;
+        }
+
+        #playTime {
+            float: left;
+            margin-top: 13px;
+            color: rgb(179, 174, 179);
+            margin-left: 8px;
+            font-size: 10px;
+        }
+
+        #mute {
+            float: left;
+            width: 22px;
+            height: 22px;
+            margin-top: 12px;
+            margin-left: 8px;
+            background: url(./images/control2.jpg);
+            background-position-x: 233px;
+            background-position-y: 0px;
+        }
+
+        .control {
+            margin-top: 30px;
+            margin-left: 30px;
+        }
+
+        .freeDownload {
+            margin-top: 100px;
+            margin-left: auto;
+            margin-right: auto;
+            border-radius: 20px;
+            width: 198px;
+            height: 39px;
+            line-height: 39px;
+            background: url(./images/control2.jpg);
+            background-position-x: 277px;
+            background-position-y: 40px;
+        }
+
+        .download_pic {
+            position: absolute;
+            display: inline-block;
+            width: 19px;
+            height: 18px;
+            margin-top: 10px;
+            margin-left: 30px;
+            background: url(./images/control2.jpg);
+            background-position-x: 276px;
+            background-position-y: 0px;
+        }
+
+        .freeDownload>span {
+            margin-left: 50px;
+        }
+
+        .spot {
+            margin-left: 40px;
+        }
+
+        .photo {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            margin-top: 20px;
+            margin-left: 50px;
+            border-radius: 50%;
+        }
+
+        .listening {
+            display: inline-block;
+            position: absolute;
+            width: 60px;
+            height: 250px;
+            background: url(./images/control2.jpg);
+            margin-top: -70px;
+            margin-left: 100px;
+            background-position-x: 60px;
+            background-position-y: 0px;
+            background-size: 600px 250px;
+            transform: rotate(90deg);
+        }
+
+        .bubble {
+            display: inline-block;
+            width: 60px;
+            height: 200px;
+        }
+
+        .Sname {
+            position: absolute;
+            width: 200px;
+            height: 30px;
+            margin-top: 100px;
+            margin-left: -80px;
+            transform: rotate(-90deg);
+            z-index: 100;
+        }
+
+        .Sname>p {
+            color: rgb(179, 174, 179);
+        }
+
+        .beat {
+            margin-top: 10px;
+            width: 15px;
+            height: 15px;
+        }
+
+        .Sname>span {
+            font-size: 14px;
+        }
+
+        .Sname>a {
+            color: blue;
+            margin-left: 20px;
+            font-size: 14px;
+        }
+
+        .discuss {
+            width: 800px;
+            height: 600px;
+            margin-left: 300px;
+        }
+
+        .blank {
+            margin-top: 20px;
+            margin-left: 20px;
+            font-size: 15px;
+        }
+
+        .num {
+            margin-left: 20px;
+            font-size: 12px;
+        }
+
+        .opinion {
+            width: 800px;
+            margin-top: 20px;
+            border-top: 1px solid rgb(179, 174, 179);
+        }
+
+        .myphoto {
+            display: inline-block;
+            width: 60px;
+            height: 60px;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        .myopinion,
+        .btn {
+            float: right;
+            margin-top: 15px;
+        }
+
+        #myopinion {
+            padding: 15px 15px;
+        }
+
+        #btn {
+            display: inline-block;
+            width: 90px;
+            height: 30px;
+            border: none;
+            background: #ffcd2d;
+            color: white;
+        }
+
+        .smile {
+            display: inline-block;
+            border-radius: 50%;
+            transform: scale(0.7, 0.7);
+            margin-left: 80px;
+        }
+
+        .sta {
+            float: right;
+            margin-top: 23px;
+            margin-right: 10px;
+            font-size: 12px;
+        }
+
+        #good {
+            width: 800px;
+            height: 300px;
+            margin-top: 15px;
+            border-top: 1px solid rgb(179, 174, 179);
+        }
+
+        .commentList {
+            width: 800px;
+            height: 100px;
+            border-bottom: 1px solid rgb(179, 174, 179);
+        }
+
+        .common {
+            display: inline-block;
+            margin-left: 20px;
+            width: 710px;
+            height: 85px;
+        }
+
+        .span_share {
+            float: right;
+            font-size: 12px;
+            color: rgb(179, 174, 179);
+        }
+
+        .comment_content {
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        .time {
+            font-size: 12px;
+        }
+
+        .unite {
+            float: right;
+            font-size: 12px;
+            margin-left: 15px;
+        }
+
+        .del {
+            float: right;
+            font-size: 12px;
+            color: blue;
+        }
+
+        .thumb {
+            width: 17px;
+            height: 17px;
+            float: right;
+            margin-left: 3px;
+        }
+
+        .paging {
+            margin: 0 auto;
+            width: 50px;
+            width: 450px;
+        }
+
+        .paging>div {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+            font-size: 12px;
+            text-align: center;
+            border-radius: 50%;
+            background: #eee;
+            margin: 0 10px;
+        }
+
+        .paging>div:nth-child(2) {
+            background-color: #ffcd2d;
+            color: white;
+        }
+
+        .paging>div:nth-child(5) {
+            background: white;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="nav">
+        <div class="header">
+            <img src="./images/logo.jpg" class="logo" />
+            <div class="first"><a href="#" class="colors">首页</a></div>
+            <div class="first"><a href="#">榜单</a></div>
+            <div class="first"><a href="#">歌手</a></div>
+            <div class="download"><a href="">下载酷我客户端</a></div>
+            <div class="img"></div>
+            <div class="second"><a href="#">美女秀</a></div>
+            <div class="img"></div>
+            <div class="second"><a href="#">酷我耳机</a></div>
+            <div class="img"></div>
+            <div class="second"><a href="#">VIP会员</a></div>
+            <div class="img"></div>
+            <div class="second"><a href="#">i听</a></div>
+            <div class="third"><a href="#">更多服务</a></div>
+            <div class="third"><a href="#">登录</a></div>
+            <div><a href="#">^</a></div>
+            <div class="search">找到好音乐</div>
+        </div>
+    </div>
+    <div class="page">
+        <div class="lyric">
+            <p class="title">喜羊羊</p>
+            <p class="message">
+                <span class="singer">专辑：</span><span class="colors">儿歌大全</span>
+                <span class="singer">歌手：</span><span class="colors">华语群星</span>
+                <span><a href="#" class="share">分享</a></span>
+                <!-- <div class="comment"> </div>--><span class="colors">评论</span>
+            </p>
+            <p class="message">
+                <span>上传时间：2015-10-02</span><span>&nbsp;歌曲来源：网络</span>
+            </p>
+            <div class="words">
+                <p>白云因为我变的柔软</p>
+                <p>别看我只是一只羊</p>
+                <p>羊儿的聪明难以想像</p>
+                <p>天再高心情一样奔放</p>
+                <p>每天都追赶太阳</p>
+                <p class="colors">有什么难题 去牵绊我 都不会去心伤</p>
+                <p>有什么危险 在我面前 也不会去慌乱</p>
+                <p>就算有狼群 把我追捕 也当做游戏一场</p>
+                <p>在什么时间 都爱开心 笑容都会飞翔</p>
+                <p>就算会摔倒 站得起来 永远不会沮丧</p>
+                <p>在所有天气 拥有叫人 大笑的力量</p>
+                <p>虽然我只是羊</p>
+                <p>虽然我只是羊</p>
+                <p>喜羊羊美羊羊懒羊羊沸羊羊</p>
+                <p>慢羊羊软绵绵红太狼灰太狼</p>
+            </div>
+        </div>
+        <div class="player">
+            <audio autoplay="autoplay" id="mymusic">
+                <source src="./music/2.mp3" type="audio/mp3">
+            </audio>
+            <div class="coverframe">
+                <!-- <img src="./images/cover.jpg" class="cover" /> -->
+                <div class="cover">
+                    <div class="big_circle">
+                        <div class="small_circle"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="control">
+                <div id="playBtn"></div>
+                <div class="bufBar">
+                    <div class="prograssBar"></div>
+                    <a href="#" class="processBtn"></a>
+                </div>
+                <div id="playTime">00:00</div>
+                <div id="mute"></div>
+            </div>
+            <div class="freeDownload">
+                <div class="download_pic"></div>
+                <span>免费下载这首歌</span>
+            </div>
+            <div class="spot">
+                <img src="./images/photo.jpg" class="photo" />
+                <div class="listening">
+                    <div class="bubble">
+                        <div class="Sname">
+                            <p>郭子仪——h5班</p>
+                            <img src="./images/beat.gif" class="beat" />
+                            <span>喜羊羊与灰太狼</span>
+                            <a href="#">去现场&nbsp;></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="discuss">
+        <p class="blank">评论 <span class="num">1703条评论</span></p>
+        <div class="opinion">
+            <img src="./images/photo.jpg" class="myphoto">
+            <form class="myopinion">
+                <textarea name="opinion" placeholder="分享你的音乐见解" id="myopinion" cols="93" rows="10"></textarea>
+            </form>
+            <form class="btn">
+                <input type="button" value="评论" id="btn">
+            </form>
+            <img src="./images/smile.png" class="smile" />
+            <span class="sta">已输入<span id="num">0</span>个字</span>
+        </div>
+        <p class="blank">精彩评论</p>
+        <div id="good"></div>
+    </div>
+    <div class="paging">
+        <div>
+            < </div>
+                <div>1</div>
+                <div>2</div>
+                <div>3</div>
+                <div>...</div>
+                <div>17</div>
+                <div>></div>
+        </div>
+</body>
+<script>
+    var playBtn = document.getElementById("playBtn");
+    var mute = document.getElementById("mute");
+    var prograssBar = document.getElementsByClassName("prograssBar");
+    var processBtn = document.getElementsByClassName("processBtn");
+    var i = 0, j = 0;
+    //音乐播放的控制及图标变换
+    playBtn.onclick = function () {
+        if (i % 2 == 0) {
+            mymusic.play();
+            playBtn.style.backgroundPositionX = "70px";
+            playBtn.style.backgroundPositionY = "0px";
+        }
+        else {
+            mymusic.pause();
+            playBtn.style.backgroundPositionX = "115px";
+            playBtn.style.backgroundPositionY = "0px";
+        }
+        i++;
+    }
+    //音乐播放时间及进度条
+    window.onload = setInterval(function () {
+        var playtime = parseInt(mymusic.currentTime);
+        var seconds = playtime % 60;
+        var minutes = parseInt(playtime / 60);
+        var mymusicLength = mymusic.duration;
+        playTime.innerHTML = "";
+        if (seconds > 9 && minutes > 9) {
+            playTime.innerHTML = minutes + ":" + seconds;
+        }
+        else if (seconds > 9 && minutes < 10) {
+            playTime.innerHTML = "0" + minutes + ":" + seconds;
+        }
+        else if (seconds < 10 && minutes > 9) {
+            playTime.innerHTML = minutes + ":" + "0" + seconds;
+        }
+        else {
+            playTime.innerHTML = "0" + minutes + ":" + "0" + seconds;
+        }
+        prograssBar[0].style.width = parseInt(playtime / mymusicLength * 298) + "px";
+        processBtn[0].style.marginLeft = parseInt(playtime / mymusicLength * 298) - 2 + "px";
+    }, 1000);
+    //静音控制
+    mute.onclick = function () {
+        j++;
+        if (j % 2 == 0)
+            mymusic.muted = false;
+        else
+            mymusic.muted = true;
+    }
+    var num = document.getElementById("num");
+    var myopinion = document.getElementById("myopinion");
+    //字数统计
+    myopinion.onkeyup = function () {
+        var value = myopinion.value;
+        value = value.replace(/\r|\n/ig, "");
+        num.innerHTML = value.length;
+    }
+    //本地存储
+    var btn = document.getElementById("btn");
+    var good = document.getElementById("good");
+    var date1, localTime, pList2_val, span_time_val;
+    function convertTimer(start) {
+        return start < 10 ? ("0" + start) : start;
+    }
+    function Today(date1) {
+        var year = date1.getFullYear();
+        var month = date1.getMonth();
+        month = month + 1;
+        var currentDay = date1.getDate();
+        var hour = date1.getHours();
+        var min = date1.getMinutes();
+        var second = date1.getSeconds();
+        hour = convertTimer(hour);
+        min = convertTimer(min);
+        second = convertTimer(second);
+        localTime = year + "-" + month + "-" + currentDay + " " + hour + ":" + min + ":" + second;
+    }
+    function addNode() {
+        var div_out = document.createElement("div");
+        var div_in = document.createElement("div");
+        var img_myphoto = document.createElement("img");
+        var img_thumb = document.createElement("img");
+        var pList1 = document.createElement("p");
+        var pList2 = document.createElement("p");
+        var pList3 = document.createElement("p");
+        var span_name = document.createElement("span");
+        var span_share = document.createElement("span");
+        var span_time = document.createElement("span");
+        var span_del = document.createElement("span");
+        var span_num = document.createElement("span");
+        var span_reply = document.createElement("span");
+        div_out.setAttribute("class", "commentList");
+        img_myphoto.src = "./images/photo.jpg";
+        img_myphoto.setAttribute("class", "myphoto");
+        div_in.setAttribute("class", "common");
+        span_name.innerHTML = "郭子仪";
+        span_name.setAttribute("class", "colors");
+        span_share.innerHTML = "分享";
+        span_share.setAttribute("class", "span_share");
+        pList2.innerHTML = pList2_val;
+        pList2.setAttribute("class", "comment_content")
+        span_time.innerHTML = span_time_val;
+        span_time.setAttribute("class", "time");
+        span_del.innerHTML = "删除";
+        span_del.setAttribute("class", "del");
+        span_num.innerHTML = "163";
+        span_num.setAttribute("class", "unite");
+        span_reply.innerHTML = "回复";
+        span_reply.setAttribute("class", "unite");
+        img_thumb.src = "./images/thumb.png";
+        img_thumb.setAttribute("class", "thumb");
+        good.appendChild(div_out);
+        div_out.appendChild(img_myphoto);
+        div_out.appendChild(div_in);
+        div_in.appendChild(pList1);
+        pList1.appendChild(span_name);
+        pList1.appendChild(span_share);
+        div_in.appendChild(pList2);
+        div_in.appendChild(pList3);
+        pList3.appendChild(span_time);
+        pList3.appendChild(span_reply);
+        pList3.appendChild(img_thumb);
+        pList3.appendChild(span_num);
+        pList3.appendChild(span_del);
+    }
+    function saveNote() {
+        var location = localStorage["location"];
+        if (location == "" || location == null || location == undefined) {
+            localStorage["location"] = "[]";
+        }
+        location = JSON.parse(localStorage["location"]);
+        var locationObj = { timer: localTime, content: myopinion.value };
+        location.unshift(locationObj);
+        localStorage["location"] = JSON.stringify(location);
+    }
+    function getNotes() {
+        var showComment = JSON.parse(localStorage["location"]);
+        for (var i = 0; i < showComment.length; i++) {
+            pList2_val = showComment[i].content;
+            span_time_val = showComment[i].timer;
+            addNode();
+        }
+    }
+    btn.onclick = function () {
+        good.innerHTML = "";
+        date1 = new Date();
+        Today(date1);
+        saveNote();
+        getNotes();
+        num.innerHTML = "0";
+        myopinion.value = "";
+    }
+    window.onload = function () {
+        if (localStorage) {
+            getNotes();
+        }
+    }
+</script>
+
+</html>
